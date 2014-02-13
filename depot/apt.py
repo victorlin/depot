@@ -266,4 +266,7 @@ class AptRepository(object):
         for arch, packages in six.iteritems(self.deleting_packages):
             self.commit_package_metadata(arch, deleted_pkgs=packages)
         self.commit_sources_metadata()
-        self.commit_release_metadata(six.iterkeys(self.dirty_packages))
+        if self.dirty_packages:
+            self.commit_release_metadata(six.iterkeys(self.dirty_packages))
+        if self.deleting_packages:
+            self.commit_release_metadata(six.iterkeys(self.deleting_packages))
