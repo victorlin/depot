@@ -238,7 +238,7 @@ class AptRepository(object):
             release.update_hash(release_packages_path+'.bz2')
             if lzma:
                 release.update_hash(release_packages_path+'.lzma')
-        if self.dirty_sources:
+        if self.dirty_sources or self.deleting_packages:
             release_sources_path = '{0}/source/Sources'.format(self.component)
             release.update_hash(release_sources_path)
             release.update_hash(release_sources_path+'.gz')
